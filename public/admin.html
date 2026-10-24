@@ -6,47 +6,53 @@
 <meta name="robots" content="noindex">
 <title>Administration</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <script src="/config.js"></script>
 <style>
-:root{--bg:#F5F4F6;--ink:#2A1F2D;--mute:#6E6472;--line:#DDD8E0;--gold:#A8844A;--red:#b3261e}
+:root{--creme:#EEE4DA;--sand:#D8C4AC;--rose:#C8A49F;--wine:#4D0E13;--mute:#6B4A48;--line:rgba(77,14,19,.2);--red:#a3201a}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-h1,h2{font:400 1.6rem Georgia,serif;margin:0 0 14px}
-label{display:grid;gap:4px;font-size:.85rem;color:var(--mute)}
-input,select,textarea{font:inherit;color:var(--ink);padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
-textarea{min-height:70px;resize:vertical}
+[hidden]{display:none!important}
+body{margin:0;background:var(--creme);color:var(--wine);font:400 16px/1.55 'Josefin Sans',system-ui,sans-serif}
+:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+h1,h2{font-weight:300;margin:0 0 16px;letter-spacing:.05em;text-transform:uppercase;font-size:1.5rem}
+label{display:grid;gap:5px;font-size:.9rem;color:var(--mute)}
+input,select,textarea{font:inherit;color:var(--wine);padding:10px 18px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.65);width:100%}
+textarea{min-height:76px;resize:vertical;border-radius:20px}
+input[type=checkbox]{width:auto;accent-color:var(--wine)}
 button{font:inherit;cursor:pointer}
-.btn{background:var(--ink);color:#fff;border:0;border-radius:99px;padding:10px 22px;white-space:nowrap}
-.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}
-.btn.del{background:none;color:var(--red);border:1px solid #e3b4b0;padding:7px 16px}
-.link{background:none;border:0;color:var(--mute);text-decoration:underline}
-.top{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--line);padding:12px 5vw}
+.btn{background:var(--wine);color:var(--creme);border:0;border-radius:99px;padding:10px 24px;white-space:nowrap;text-align:center}
+.btn.ghost{background:none;color:var(--wine);border:1px solid var(--wine)}
+.btn.del{background:none;color:var(--red);border:1px solid #d9aaa6;padding:8px 18px}
+.link{background:none;border:0;color:inherit;text-decoration:underline}
+.top{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--wine);color:var(--creme);padding:12px 5vw}
+.top a{color:var(--creme)}
+.top b{letter-spacing:.18em;text-transform:uppercase;font-weight:400}
 .top nav{display:flex;gap:6px}
-.top nav button{background:none;border:0;padding:8px 16px;border-radius:99px;color:var(--ink)}
-.top nav button.on{background:var(--ink);color:#fff}
-.wrap{max-width:980px;margin:auto;padding:24px 5vw 80px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
-.stats div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;color:var(--mute)}
-.stats b{display:block;font:400 2rem Georgia,serif;color:var(--ink)}
-.bar2{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}.bar2 input{flex:1;min-width:180px}.bar2 select{width:auto}
-.row{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:10px}
+.top nav button{background:none;border:0;padding:8px 18px;border-radius:99px;color:var(--creme)}
+.top nav button.on{background:var(--creme);color:var(--wine)}
+.wrap{max-width:980px;margin:auto;padding:26px 5vw 80px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.stats div{background:var(--sand);border-radius:30px;padding:14px 24px;color:var(--wine)}
+.stats b{display:block;font:300 2.2rem 'Josefin Sans',sans-serif}
+.bar2{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}.bar2 input{flex:1;min-width:180px}.bar2 select{width:auto}
+.row{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:34px;padding:10px 18px 10px 12px;margin-bottom:10px}
 .row .grow{flex:1;min-width:0}.row small,.small{color:var(--mute)}
-.thumb{width:54px;aspect-ratio:3/4;border-radius:999px 999px 0 0;background:#e8d9db;overflow:hidden;flex:none}
+.thumb{width:54px;aspect-ratio:3/4;border-radius:999px 999px 0 0;background:linear-gradient(175deg,var(--sand),var(--rose));overflow:hidden;flex:none}
 .thumb img{width:100%;height:100%;object-fit:cover}
-.chk{display:flex;align-items:center;gap:8px;flex-direction:row}.chk input{width:auto}
+.chk{display:flex;align-items:center;gap:8px;flex-direction:row}
 .empty{color:var(--mute)}
-dialog{border:0;border-radius:16px;padding:24px;width:min(640px,94vw);box-shadow:0 20px 60px rgba(42,31,45,.3)}
-dialog::backdrop{background:rgba(42,31,45,.45)}
-.pfg{display:grid;grid-template-columns:130px 1fr;gap:20px}
-.pfg .thumb{width:130px;margin-bottom:10px}
+dialog{border:0;border-radius:32px;padding:28px;width:min(660px,94vw);background:var(--creme);color:var(--wine);box-shadow:0 20px 60px rgba(77,14,19,.35)}
+dialog::backdrop{background:rgba(77,14,19,.5)}
+.pfg{display:grid;grid-template-columns:130px 1fr;gap:22px}
+.pfg .thumb{width:130px;margin-bottom:12px}
 .f{display:grid;grid-template-columns:1fr 1fr;gap:12px}.f .w{grid-column:1/-1}
-.acts{display:flex;gap:10px;margin-top:20px;align-items:center}.acts span{flex:1}
-#login{max-width:340px;margin:16vh auto;display:grid;gap:12px;padding:0 5vw}
-.err{color:var(--red)}
-#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 20px;border-radius:99px;opacity:0;transition:.25s;pointer-events:none}
+.acts{display:flex;gap:10px;margin-top:22px;align-items:center}.acts span{flex:1}
+#login{max-width:360px;margin:14vh auto;display:grid;gap:14px;padding:34px;background:var(--sand);border-radius:40px;width:92%}
+.err{color:var(--red);font-size:.95rem}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--wine);color:var(--creme);padding:11px 22px;border-radius:99px;opacity:0;transition:.25s;pointer-events:none;max-width:92vw;text-align:center;z-index:99}
 #toast.on{opacity:1;transform:translate(-50%,0)}
-@media(max-width:600px){.pfg,.f{grid-template-columns:1fr}.stats b{font-size:1.5rem}}
+@media(max-width:600px){.pfg,.f{grid-template-columns:1fr}.stats b{font-size:1.6rem}.stats div{padding:12px 16px}}
 </style>
 </head>
 <body>
@@ -92,13 +98,19 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money = n => new Intl.NumberFormat('fr-FR').format(n) + ' ' + (S.set.currency || '');
 function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2800); }
-function fail(e, msg) { if (!e) return false; toast(e.code === '23503' ? 'Déplacez ou supprimez d’abord les articles de cette catégorie.' : (msg || 'Action refusée : ' + e.message)); return true; }
+function fail(e, msg) { if (!e) return false; const m = e.message || ''; toast(e.code === '23503' ? 'Déplacez ou supprimez d’abord les articles de cette catégorie.' : /row-level security|permission/i.test(m) ? 'Ce compte n’est pas autorisé : l’e-mail doit être identique à celui écrit dans supabase.sql.' : (msg || 'Action refusée : ' + m)); return true; }
 
-(async () => { const { data } = await sb.auth.getSession(); data.session ? start() : $('#login').hidden = false; })();
+const NOCFG = /XXXX|COLLEZ/.test(SUPABASE_URL + SUPABASE_ANON_KEY);
+function showLogin(msg) { $('#login').hidden = false; $('#lerr').textContent = msg || ''; }
+(async () => {
+  if (NOCFG) return showLogin('Le fichier public/config.js n’est pas rempli (URL et clé Supabase).');
+  try { const { data } = await sb.auth.getSession(); data.session ? start() : showLogin(); } catch (e) { showLogin('Connexion à Supabase impossible : vérifiez l’URL dans config.js.'); }
+})();
 $('#login').onsubmit = async e => {
-  e.preventDefault();
-  const { error } = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#pw').value });
-  if (error) { $('#lerr').textContent = 'E-mail ou mot de passe incorrect.'; return; }
+  e.preventDefault(); $('#lerr').textContent = '';
+  if (NOCFG) return showLogin('Le fichier public/config.js n’est pas rempli (URL et clé Supabase).');
+  let r; try { r = await sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#pw').value }); } catch (x) { return showLogin('Connexion à Supabase impossible : vérifiez l’URL dans config.js.'); }
+  if (r.error) { const m = r.error.message || ''; return showLogin(/not confirmed/i.test(m) ? 'E-mail non confirmé : dans Supabase (Authentication → Users), confirmez cet utilisateur.' : /invalid login/i.test(m) ? 'E-mail ou mot de passe incorrect. Vérifiez l’utilisateur créé dans Supabase.' : m); }
   $('#login').hidden = true; start();
 };
 $('#logout').onclick = async () => { await sb.auth.signOut(); location.reload(); };
